@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
+use App\LabPC;
+use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class LabPCController extends Controller
 {
     public function all(){
-        $result = Student::all();
+        $result = LabPC::all();
 
         $json = json_encode($result);
         return $json;
     }
     public function get($id){
-        $result = Student::find($id);
+        $result = LabPC::find($id);
 
         $json = json_encode($result);
         return $json;
@@ -26,11 +27,11 @@ class StudentController extends Controller
         if(isset($condition2)){
             $condition2 = explode('&', $condition2);
             $condition2[2] = str_replace('+', ' ', $condition2[2]);
-            $result = Student::all()
+            $result = LabPC::all()
                 ->where($condition[0], $condition[1], $condition[2])
                 ->where($condition2[0], $condition2[1], $condition2[2]);
         } else {
-            $result = Student::all()
+            $result = LabPC::all()
                 ->where($condition[0], $condition[1], $condition[2]);
         }
 
@@ -44,12 +45,12 @@ class StudentController extends Controller
         if(isset($condition2)){
             $condition2 = explode('&', $condition2);
             $condition2[2] = str_replace('+', ' ', $condition2[2]);
-            $result = Student::all()
+            $result = LabPC::all()
                 ->where('id', '=', $id)
                 ->where($condition[0], $condition[1], $condition[2])
                 ->where($condition2[0], $condition2[1], $condition2[2]);
         } else {
-            $result = Student::all()
+            $result = LabPC::all()
                 ->where('id', '=', $id)
                 ->where($condition[0], $condition[1], $condition[2]);
         }
@@ -65,11 +66,11 @@ class StudentController extends Controller
             if(isset($condition2)){
                 $condition2 = explode('&', $condition2);
                 $condition2[2] = str_replace('+', ' ', $condition2[2]);
-                $result = Student::all()
+                $result = LabPC::all()
                     ->where($condition[0], $condition[1], $condition[2])
                     ->where($condition2[0], $condition2[1], $condition2[2]);
             } else {
-                $result = Student::all()
+                $result = LabPC::all()
                     ->where($condition[0], $condition[1], $condition[2]);
             }
 

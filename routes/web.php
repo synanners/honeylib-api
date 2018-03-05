@@ -38,3 +38,29 @@ Route::prefix('api/logs')->group( function(){
     Route::get('get/{id}/columns/{columns}/where/{condition}', 'LogController@get_columns_where');
 
 });
+
+Route::prefix('api/students')->group( function(){
+    //Get all
+    Route::get('all','StudentController@all');
+    //Get Single by id
+    Route::get('get/{id}', 'StudentController@get');
+    //Get all, certain columns, where
+    Route::get('all/where/{condition}/{condition2?}', 'StudentController@all_where');
+    //Get Single, certain columns, by condition col=value
+    Route::get('get/{id}/where/{condition}/{condition2?}', 'StudentController@get_where');
+
+    Route::get('/{condition?}/{condition2?}', 'StudentController@where');
+});
+
+Route::prefix('api/labpc')->group( function(){
+    //Get all
+    Route::get('all','LabPCController@all');
+    //Get Single by id
+    Route::get('get/{id}', 'LabPCController@get');
+    //Get all, certain columns, where
+    Route::get('all/where/{condition}/{condition2?}', 'LabPCController@all_where');
+    //Get Single, certain columns, by condition col=value
+    Route::get('get/{id}/where/{condition}/{condition2?}', 'LabPCController@get_where');
+
+    Route::get('/{condition?}/{condition2?}', 'LabPCController@where');
+});
