@@ -14,12 +14,11 @@ class CreateReservationlogTable extends Migration
     public function up()
     {
         Schema::create('reservationlog', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('res_number');
-            $table->string('pc_name',100);
-            $table->dateTime('starttime');
-            $table->dateTime('endtime');
-            $table->string('student',60);
+            $table->string('pc_name',100)->nullable();
+            $table->dateTime('starttime')->nullable();
+            $table->dateTime('endtime')->nullable();
+            $table->string('student',60)->nullable();
             $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });

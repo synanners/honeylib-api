@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('api/{table}/{id}/{columns}', 'APIController@update');
+Route::get('api/{table}/{columns}', 'APIController@insert');
+
 Route::prefix('api/logs')->group( function(){
 
     //Get all
