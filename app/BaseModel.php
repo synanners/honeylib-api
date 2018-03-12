@@ -13,22 +13,27 @@ class BaseModel extends Authenticatable{
 
     public static function saveData($data){
         try {
-          
-            //dd($data);
+
             $query = static::getInstance($data);
-            echo json_encode($data)."<br/>";
-            //dd($query);
 
             $ctr = 0;
+
             foreach ($query->fillable as $column){
-                echo $column." => ".$data[$ctr]."<br/>";
                 if($column == "password"){
                     $query[$column] = bcrypt($data[$ctr]);
                 } else {
-                    $query[$column] = $data[$ctr];
+                    if($data[$ctr] === ""){
+                        echo $column." => NULL <br/>";
+                        $query[$column] = null;
+                    } else {
+                        echo $column." => ".$data[$ctr]."<br/>";
+                        $query[$column] = $data[$ctr];
+                    }
                 }
                 $ctr++;
             }
+
+            echo "<hr/>";
 
             $query->save();
            
@@ -68,14 +73,19 @@ class BaseModel extends Authenticatable{
     public static function editData($data){
 
         try {
+
             $query = static::getInstance($data);
             echo json_encode($data)."<br/>";
 
             if($query->primaryKey == 'id'){
-
                 $ctr = 0;
                 foreach ($query->fillable as $column){
-                    $query[$column] = $data[$ctr];
+                    if($data[$ctr] === ""){
+                        continue;
+                    } else {
+                        echo $column." => ".$data[$ctr]."<br/>";
+                        $query[$column] = $data[$ctr];
+                    }
                     $ctr++;
                 }
 
@@ -87,17 +97,6 @@ class BaseModel extends Authenticatable{
                 }
             }
 
-            /*$ctr = 0;
-            foreach ($query->fillable as $column){
-                if ($query->primaryKey !== 'id')
-                    continue;
-                $query[$column] = $data[$ctr];
-                $ctr++;
-            }*/
-
-            //$query->fill($data);
-
-            //dd($query);
             $query->save();
 
             if($query->save()){
@@ -132,5 +131,4 @@ class BaseModel extends Authenticatable{
             ));
         }
     }
-
 }

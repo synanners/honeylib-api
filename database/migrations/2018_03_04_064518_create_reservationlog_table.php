@@ -19,7 +19,7 @@ class CreateReservationlogTable extends Migration
             $table->dateTime('starttime')->nullable();
             $table->dateTime('endtime')->nullable();
             $table->string('student',60)->nullable();
-            $table->tinyInteger('active')->default(1);
+            $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ class CreateLabpcTable extends Migration
     {
         Schema::create('labpc', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pc_name',100);
-            $table->string('ip_address', 100);
-            $table->string('in_use', 9)->default(null);
+            $table->string('pc_name',100)->nullable();
+            $table->string('ip_address', 100)->nullable();
+            $table->string('in_use', 9)->nullable();
             $table->timestamps();
         });
     }

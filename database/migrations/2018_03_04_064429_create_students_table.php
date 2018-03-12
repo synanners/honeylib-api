@@ -22,7 +22,6 @@ class CreateStudentsTable extends Migration
             $table->string('img')->nullable();
             $table->dateTime('lastlogin')->nullable();
             $table->tinyInteger('active')->default(0);
-
             $table->timestamps();
         });
     }
