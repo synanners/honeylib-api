@@ -65,14 +65,6 @@ class APIController extends Controller
             //return json_encode("status: ok");
         } else {
             dd($result);
-            //return json_encode($result);
         }
-
-        /*array_push($attr, $table);
-        array_push($attr, $method);
-
-        var_dump($attr);
-        dd($attr);*/
-
     }
 }

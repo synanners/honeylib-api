@@ -14,11 +14,24 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return "Welcome to Honey E-Lib API";
 });
 
 Route::get('api/query/{table}/{id}/{columns}', 'APIController@update');
 Route::get('api/query/{table}/{columns}', 'APIController@insert');
+
+Route::prefix('api/users/')->group(function(){
+    //Get all
+    Route::get('all','UserController@all');
+    //Get Single by id
+    Route::get('get/{id}', 'UserController@get');
+    //Get all, certain columns, where
+    Route::get('all/where/{condition}/{condition2?}', 'UserController@all_where');
+    //Get Single, certain columns, by condition col=value
+    Route::get('get/{id}/where/{condition}/{condition2?}', 'UserController@get_where');
+
+    Route::get('/{condition?}/{condition2?}', 'UserController@where');
+});
 
 Route::prefix('api/logs')->group( function(){
 

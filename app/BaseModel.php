@@ -21,12 +21,15 @@ class BaseModel extends Authenticatable{
 
             $ctr = 0;
             foreach ($query->fillable as $column){
-                $query[$column] = $data[$ctr];
+                echo $column." => ".$data[$ctr]."<br/>";
+                if($column == "password"){
+                    $query[$column] = bcrypt($data[$ctr]);
+                } else {
+                    $query[$column] = $data[$ctr];
+                }
                 $ctr++;
             }
 
-            //dd($query);
-            //$query->fill($data);
             $query->save();
            
             if($query->save()){
@@ -67,7 +70,6 @@ class BaseModel extends Authenticatable{
         try {
             $query = static::getInstance($data);
             echo json_encode($data)."<br/>";
-            //dd($query);
 
             if($query->primaryKey == 'id'){
 

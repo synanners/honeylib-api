@@ -10,6 +10,7 @@ class User extends BaseModel
 
     protected $fillable = [
         'username',
+        'email',
         'password',
     ];
 
